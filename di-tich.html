@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Di Sản | Việt Sử Xanh QR Experience</title>
+    <style>
+        :root {
+            --eco-green: #1E4620;
+            --eco-light: #EBF3EC;
+            --coffee-brown: #4A3222;
+            --bagasse-beige: #F7F3EB;
+            --heritage-gold: #C68B2C;
+            --white: #FFFFFF;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bagasse-beige);
+            color: var(--coffee-brown);
+            line-height: 1.6;
+            padding-bottom: 48px;
+        }
+        h1, h2, h3, .serif { font-family: Georgia, "Times New Roman", Times, serif; }
+        a { text-decoration: none; color: inherit; }
+        
+        header {
+            background: var(--eco-green); color: var(--white);
+            padding: 14px 16px; position: sticky; top: 0; z-index: 50;
+        }
+        .header-inner { max-width: 600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .tag-verified { font-size: 11px; background: rgba(255,255,255,0.18); padding: 4px 10px; border-radius: 999px; font-weight: bold; }
+
+        main { max-width: 600px; margin: 0 auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 20px; }
+
+        .hero-box {
+            background: var(--white); border-radius: 22px; overflow: hidden;
+            border: 1px solid rgba(74,50,34,0.1); box-shadow: 0 8px 24px rgba(74,50,34,0.08);
+        }
+        .hero-banner {
+            background: linear-gradient(135deg, #4A3222, #2b1c12);
+            color: var(--white); padding: 28px 22px;
+        }
+        .vol-pill {
+            display: inline-block; background: var(--heritage-gold); color: var(--white);
+            font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 999px;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+        }
+        .hero-banner h1 { font-size: 28px; line-height: 1.25; margin-bottom: 6px; }
+        .hero-banner p { font-size: 13px; opacity: 0.85; }
+        .meta-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            background: var(--eco-light); text-align: center; padding: 12px 8px;
+            border-top: 1px solid rgba(74,50,34,0.08);
+        }
+        .meta-grid span { font-size: 11px; opacity: 0.7; display: block; }
+        .meta-grid strong { font-size: 13px; color: var(--eco-green); }
+
+        .audio-bar {
+            background: var(--coffee-brown); color: var(--bagasse-beige);
+            padding: 16px 18px; border-radius: 18px;
+            display: flex; justify-content: space-between; align-items: center; gap: 12px;
+        }
+        .btn-audio {
+            background: var(--eco-green); color: var(--white); border: none;
+            padding: 10px 16px; border-radius: 12px; font-weight: bold; font-size: 13px;
+            cursor: pointer; shrink: 0; white-space: nowrap;
+        }
+
+        .card {
+            background: var(--white); padding: 22px; border-radius: 22px;
+            border: 1px solid rgba(74,50,34,0.1);
+        }
+        .kicker { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: var(--eco-green); margin-bottom: 10px; display: block; }
+        .story-text p { font-size: 14px; margin-bottom: 12px; opacity: 0.9; }
+        .fun-fact {
+            background: var(--bagasse-beige); padding: 14px; border-radius: 14px;
+            border-left: 4px solid var(--heritage-gold); margin-top: 14px; font-size: 13px;
+        }
+
+        .steps { padding-left: 18px; font-size: 13px; display: flex; flex-direction: column; gap: 8px; }
+
+        .quiz-card {
+            background: var(--eco-green); color: var(--white);
+            padding: 22px; border-radius: 22px;
+        }
+        .quiz-opt {
+            display: block; width: 100%; text-align: left;
+            background: rgba(255,255,255,0.15); color: var(--white);
+            border: 1px solid rgba(255,255,255,0.25); padding: 12px 14px;
+            border-radius: 12px; margin-top: 10px; font-size: 14px; font-weight: 600; cursor: pointer;
+        }
+        .quiz-opt:hover { background: var(--white); color: var(--coffee-brown); }
+        .quiz-feedback {
+            display: none; background: var(--white); color: var(--coffee-brown);
+            padding: 14px; border-radius: 12px; margin-top: 14px; font-size: 13px;
+        }
+
+        .nav-links { text-align: center; margin-top: 10px; }
+        .pill-link {
+            display: inline-block; background: var(--white); border: 1px solid rgba(74,50,34,0.18);
+            padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; margin: 4px;
+        }
+        .pill-link:hover { background: var(--eco-green); color: var(--white); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="serif" style="font-weight: bold; font-size: 16px;">VIỆT SỬ XANH</a>
+            <span class="tag-verified">Thẻ Di Sản Chính Hãng</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-box">
+            <div class="hero-banner">
+                <span id="vol-badge" class="vol-pill"></span>
+                <h1 id="monument-title"></h1>
+                <p id="monument-location"></p>
+            </div>
+            <div class="meta-grid">
+                <div><span>Vật liệu</span><strong id="kit-material"></strong></div>
+                <div><span>Số mảnh ghép</span><strong id="kit-pieces"></strong></div>
+                <div><span>Niên đại</span><strong id="monument-year" style="color: var(--heritage-gold);"></strong></div>
+            </div>
+        </div>
+
+        <div class="audio-bar">
+            <div>
+                <strong style="font-size: 14px; display: block; color: var(--white);">Nghe kể chuyện di tích</strong>
+                <span style="font-size: 12px; opacity: 0.8;">Bấm phát âm thanh trong lúc lắp ráp mô hình</span>
+            </div>
+            <button id="audio-btn" class="btn-audio" onclick="toggleAudio()">Phát Audio</button>
+        </div>
+
+        <section class="card">
+            <span class="kicker">Dấu ấn lịch sử & Kiến trúc</span>
+            <div id="story-content" class="story-text"></div>
+            <div class="fun-fact">
+                <strong style="color: var(--heritage-gold); display: block; margin-bottom: 4px;">BẠN CÓ BIẾT?</strong>
+                <span id="fun-fact"></span>
+            </div>
+        </section>
+
+        <section class="card">
+            <span class="kicker" style="color: var(--heritage-gold);">Bí kíp lắp ráp mô hình chuẩn đẹp</span>
+            <ol class="steps">
+                <li><strong>Tách mảnh nhẹ nhàng:</strong> Dùng tay ấn nhẹ từng chi tiết ra khỏi tấm phôi cắt laser theo thứ tự đánh số.</li>
+                <li><strong>Xử lý viền:</strong> Dùng miếng giấy nhám mịn tặng kèm chà nhẹ các cạnh để khớp nối khít và mịn tay hơn.</li>
+                <li><strong>Lắp khung chính:</strong> Lắp phần chân đế trước, sau đó dựng các vách tường và mái theo sơ đồ giấy trong hộp.</li>
+                <li><strong>Cố định bằng keo sữa:</strong> Chấm một lượng nhỏ keo sữa PVA vào các ngàm nối và đợi 5 phút để mô hình chắc chắn.</li>
+            </ol>
+        </section>
+
+        <section class="quiz-card">
+            <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: var(--heritage-gold); display: block; margin-bottom: 8px;">Thử thách Nhà Sử Học Trẻ</span>
+            <h2 id="quiz-question" style="font-size: 19px; line-height: 1.35;"></h2>
+            <div id="quiz-options"></div>
+            <div id="quiz-result" class="quiz-feedback"></div>
+        </section>
+
+        <div class="nav-links">
+            <p style="font-size: 11px; text-transform: uppercase; opacity: 0.65; font-weight: bold; margin-bottom: 8px;">Khám phá các bộ Kit khác</p>
+            <a href="di-tich.html?id=cotco" class="pill-link">Cột Cờ Hà Nội</a>
+            <a href="di-tich.html?id=vanmieu" class="pill-link">Khuê Văn Các</a>
+            <a href="di-tich.html?id=chuacau" class="pill-link">Chùa Cầu Hội An</a>
+            <div style="margin-top: 14px;">
+                <a href="index.html" style="font-size: 13px; font-weight: bold; color: var(--eco-green);">← Quay về Trang chủ Việt Sử Xanh</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const monumentsDB = {
+            cotco: {
+                badge: "Vol.1 • Biểu tượng Thủ đô",
+                title: "Kỳ Đài - Cột Cờ Hà Nội",
+                location: "Địa điểm: 28A Điện Biên Phủ, Ba Đình, Hà Nội",
+                material: "Bã Cà Phê",
+                pieces: "68 mảnh",
+                year: "Năm 1812",
+                story: [
+                    "Cột Cờ Hà Nội (Kỳ Đài) được khởi công xây dựng năm 1805 và hoàn thành vào năm 1812 dưới triều vua Gia Long, nằm ở phía Nam của Hoàng thành Thăng Long.",
+                    "Công trình gồm ba tầng đế hình chóp cụt vuông, nhỏ dần, chồng lên nhau và một thân cột hình trụ tám cạnh cao hơn 18 mét. Bên trong thân cột có cầu thang xoắn ốc 54 bậc dẫn lên tới đỉnh.",
+                    "Ngày 10/10/1954, lá cờ đỏ sao vàng lần đầu tiên tung bay trên đỉnh Cột Cờ Hà Nội trong ngày Giải phóng Thủ đô, biến nơi đây thành chứng nhân lịch sử thiêng liêng của dân tộc."
+                ],
+                funFact: "Trong thời kỳ Pháp thuộc, thực dân Pháp đã phá hủy hầu hết các công trình trong thành cổ Hà Nội để xây doanh trại, nhưng riêng Cột Cờ được giữ lại nguyên vẹn để làm đài quan sát quân sự.",
+                question: "Cột Cờ Hà Nội được xây dựng vào năm nào dưới triều vua Gia Long?",
+                options: [
+                    { text: "Năm 1802", correct: false },
+                    { text: "Năm 1812", correct: true },
+                    { text: "Năm 1858", correct: false }
+                ],
+                explanation: "Chính xác! Cột Cờ Hà Nội hoàn thành vào năm 1812 và đã đứng vững hơn 200 năm giữa lòng Thủ đô."
+            },
+            vanmieu: {
+                badge: "Vol.1 • Biểu tượng Thủ đô",
+                title: "Khuê Văn Các - Văn Miếu",
+                location: "Địa điểm: 58 Quốc Tử Giám, Đống Đa, Hà Nội",
+                material: "Bã Mía Hữu Cơ",
+                pieces: "74 mảnh",
+                year: "Năm 1805",
+                story: [
+                    "Khuê Văn Các được Tổng trấn Bắc Thành Nguyễn Văn Thành cho xây dựng vào năm 1805 dưới triều vua Gia Long, nằm trong quần thể di tích Văn Miếu - Quốc Tử Giám.",
+                    "Công trình có kiến trúc vuông vức, tám mái (chồng diêm), tầng dưới là bốn trụ gạch vuông, tầng trên là gác gỗ sơn son thếp vàng.",
+                    "Điểm nhấn đặc biệt nhất là bốn mặt tường gỗ đều trổ cửa tròn với các thanh gỗ chống tỏa ra bốn phía, tượng trưng cho hình ảnh sao Khuê đang tỏa sáng rực rỡ."
+                ],
+                funFact: "Trong quan niệm thiên văn cổ phương Đông, sao Khuê là ngôi sao chủ về văn chương và khoa cử. Kiến trúc Khuê Văn Các ngày nay được chọn làm biểu tượng chính thức của Thủ đô Hà Nội.",
+                question: "Cửa sổ tròn có các thanh gỗ tỏa ra xung quanh của Khuê Văn Các tượng trưng cho điều gì?",
+                options: [
+                    { text: "Sao Khuê tỏa sáng", correct: true },
+                    { text: "Mặt trời buổi bình minh", correct: false },
+                    { text: "Hoa sen nghìn cánh", correct: false }
+                ],
+                explanation: "Tuyệt vời! Hình ảnh cửa tròn tỏa tia tượng trưng cho sao Khuê chiếu sáng nền văn hiến và tinh thần hiếu học Việt Nam."
+            },
+            chuacau: {
+                badge: "Vol.2 • Di sản Miền Trung",
+                title: "Chùa Cầu - Lai Viễn Kiều",
+                location: "Địa điểm: Phố cổ Hội An, Quảng Nam",
+                material: "Mix Bã Mía & Cà Phê",
+                pieces: "82 mảnh",
+                year: "Thế kỷ 17",
+                story: [
+                    "Chùa Cầu là viên ngọc kiến trúc nằm bắc qua một lạch nước nhỏ chảy ra sông Thu Bồn tại khu phố cổ Hội An, được các thương nhân Nhật Bản góp tiền xây dựng vào khoảng đầu thế kỷ 17.",
+                    "Cầu dài khoảng 18 mét, có mái che bằng ngói âm dương độc đáo. Gắn liền với thân cầu phía Bắc là một ngôi miếu nhỏ thờ thần Bắc Đế Trấn Vũ - vị thần bảo hộ xứ sở và mang lại niềm vui, hạnh phúc.",
+                    "Năm 1719, chúa Nguyễn Phúc Chu trong chuyến kinh lý qua Hội An đã ban cho cầu tên chữ là 'Lai Viễn Kiều' với ý nghĩa là chiếc cầu đón tiếp bạn bè phương xa."
+                ],
+                funFact: "Ở hai đầu Chùa Cầu có đặt tượng linh vật bằng gỗ đứng chầu: một đầu là tượng Chó (Tuất) và đầu kia là tượng Khỉ (Thân), tượng trưng cho năm khởi công và năm hoàn thành công trình.",
+                question: "Chúa Nguyễn Phúc Chu đã đặt tên chữ cho Chùa Cầu là gì?",
+                options: [
+                    { text: "Trường Tiền Kiều", correct: false },
+                    { text: "Lai Viễn Kiều", correct: true },
+                    { text: "Nhật Bản Kiều", correct: false }
+                ],
+                explanation: "Chính xác! 'Lai Viễn Kiều' mang ý nghĩa chiếc cầu đón những người bạn từ phương xa đến giao thương tại thương cảng Hội An."
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const monumentId = urlParams.get('id') || 'cotco';
+        const data = monumentsDB[monumentId] || monumentsDB['cotco'];
+
+        document.title = data.title + " | Việt Sử Xanh QR";
+        document.getElementById('vol-badge').innerText = data.badge;
+        document.getElementById('monument-title').innerText = data.title;
+        document.getElementById('monument-location').innerText = data.location;
+        document.getElementById('kit-material').innerText = data.material;
+        document.getElementById('kit-pieces').innerText = data.pieces;
+        document.getElementById('monument-year').innerText = data.year;
+        document.getElementById('fun-fact').innerText = data.funFact;
+        document.getElementById('story-content').innerHTML = data.story.map(p => `<p>${p}</p>`).join('');
+
+        document.getElementById('quiz-question').innerText = data.question;
+        const optionsEl = document.getElementById('quiz-options');
+        const resultEl = document.getElementById('quiz-result');
+
+        data.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = "quiz-opt";
+            btn.innerText = opt.text;
+            btn.onclick = () => {
+                resultEl.style.display = 'block';
+                if (opt.correct) {
+                    resultEl.innerHTML = `<strong style="color: var(--eco-green); display:block; margin-bottom:4px;">Chúc mừng Nhà Sử Học Trẻ!</strong>${data.explanation}`;
+                } else {
+                    resultEl.innerHTML = `<strong style="color: #c0392b; display:block; margin-bottom:4px;">Chưa chính xác rồi!</strong>Bạn hãy đọc lại phần Dấu ấn lịch sử ở trên và chọn lại nhé.`;
+                }
+            };
+            optionsEl.appendChild(btn);
+        });
+
+        let isSpeaking = false;
+        function toggleAudio() {
+            const btn = document.getElementById('audio-btn');
+            if ('speechSynthesis' in window) {
+                if (isSpeaking) {
+                    window.speechSynthesis.cancel();
+                    isSpeaking = false;
+                    btn.innerText = "Phát Audio";
+                } else {
+                    const fullText = `${data.title}. ${data.story.join(' ')} Bạn có biết: ${data.funFact}`;
+                    const utterance = new SpeechSynthesisUtterance(fullText);
+                    utterance.lang = 'vi-VN';
+                    utterance.rate = 0.95;
+                    utterance.onend = () => {
+                        isSpeaking = false;
+                        btn.innerText = "Phát Audio";
+                    };
+                    window.speechSynthesis.speak(utterance);
+                    isSpeaking = true;
+                    btn.innerText = "Dừng đọc";
+                }
+            } else {
+                alert('Trình duyệt trên thiết bị của bạn chưa hỗ trợ đọc giọng nói tự động.');
+            }
+        }
+    </script>
+</body>
+</html>

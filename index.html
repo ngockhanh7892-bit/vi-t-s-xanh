@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Việt Sử Xanh | Tái Sinh Di Sản Từ Đất Mẹ - Đồ Chơi DIY Sinh Học</title>
+    <style>
+        :root {
+            --eco-green: #1E4620;
+            --eco-light: #EBF3EC;
+            --coffee-brown: #4A3222;
+            --bagasse-beige: #F7F3EB;
+            --heritage-gold: #C68B2C;
+            --white: #FFFFFF;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bagasse-beige);
+            color: var(--coffee-brown);
+            line-height: 1.6;
+        }
+        h1, h2, h3, .serif {
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(247, 243, 235, 0.95);
+            border-bottom: 1px solid rgba(74, 50, 34, 0.12);
+            padding: 14px 0;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand-logo {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--eco-green); color: var(--bagasse-beige);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 20px;
+        }
+        .brand-title { font-size: 18px; font-weight: bold; color: var(--eco-green); letter-spacing: 0.5px; display: block; line-height: 1.1; }
+        .brand-sub { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--heritage-gold); font-weight: bold; }
+        nav { display: flex; gap: 20px; align-items: center; font-size: 14px; font-weight: 600; flex-wrap: wrap; }
+        nav a:hover { color: var(--eco-green); }
+        .btn {
+            display: inline-block; padding: 10px 20px; border-radius: 999px;
+            font-weight: 600; font-size: 14px; cursor: pointer; border: none; transition: 0.2s;
+        }
+        .btn-primary { background: var(--eco-green); color: var(--white); }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-outline { background: var(--white); color: var(--coffee-brown); border: 1px solid rgba(74, 50, 34, 0.25); }
+        .btn-outline:hover { background: var(--eco-light); }
+        .btn-gold { background: var(--heritage-gold); color: var(--white); }
+
+        /* Hero */
+        .hero { padding: 60px 0; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+        .badge {
+            display: inline-block; padding: 6px 14px; border-radius: 999px;
+            background: var(--eco-light); color: var(--eco-green);
+            font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px;
+            margin-bottom: 16px; border: 1px solid rgba(30, 70, 32, 0.2);
+        }
+        .hero h1 { font-size: 40px; line-height: 1.2; margin-bottom: 18px; }
+        .hero h1 span.green { color: var(--eco-green); font-style: italic; }
+        .hero h1 span.gold { color: var(--heritage-gold); }
+        .hero p { font-size: 16px; opacity: 0.85; margin-bottom: 24px; }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-top: 20px; border-top: 1px solid rgba(74, 50, 34, 0.12); }
+        .stats strong { font-size: 22px; color: var(--eco-green); display: block; font-family: Georgia, serif; }
+        .stats span { font-size: 12px; opacity: 0.75; }
+
+        /* Hero Visual Card (Pure SVG Illustration) */
+        .hero-card {
+            background: var(--coffee-brown); color: var(--bagasse-beige);
+            border-radius: 24px; padding: 28px; border: 4px solid var(--white);
+            box-shadow: 0 20px 40px rgba(74, 50, 34, 0.15);
+        }
+        .hero-card-art {
+            background: linear-gradient(135deg, #2b592e, #1E4620);
+            border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 18px;
+        }
+
+        /* Sections */
+        section { padding: 64px 0; }
+        .bg-white { background: var(--white); }
+        .bg-brown { background: var(--coffee-brown); color: var(--bagasse-beige); }
+        .section-header { text-align: center; max-width: 680px; margin: 0 auto 44px; }
+        .section-kicker { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--heritage-gold); display: block; margin-bottom: 8px; }
+        .section-header h2 { font-size: 32px; line-height: 1.25; }
+
+        /* Grid Cards */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .card {
+            background: var(--bagasse-beige); padding: 28px; border-radius: 20px;
+            border: 1px solid rgba(74, 50, 34, 0.1);
+        }
+        .card-white { background: var(--white); padding: 24px; border-radius: 20px; border: 1px solid rgba(74, 50, 34, 0.1); display: flex; flex-direction: column; justify-content: space-between; }
+        .card-dark { background: rgba(255, 255, 255, 0.08); padding: 24px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); display: flex; flex-direction: column; justify-content: space-between; }
+        .icon-box {
+            width: 46px; height: 46px; border-radius: 12px; background: var(--eco-green);
+            color: var(--white); display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 18px; margin-bottom: 16px;
+        }
+        .card h3, .card-white h3, .card-dark h3 { font-size: 20px; margin-bottom: 10px; }
+        .card p, .card-white p { font-size: 14px; opacity: 0.85; }
+
+        /* Product Art Box */
+        .product-art {
+            height: 160px; border-radius: 14px; margin-bottom: 16px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 16px; text-align: center;
+        }
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(74, 50, 34, 0.08); }
+        .price { font-size: 20px; font-weight: bold; color: var(--eco-green); }
+
+        /* Cart Modal */
+        .modal {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 200; justify-content: flex-end;
+        }
+        .modal.open { display: flex; }
+        .modal-panel {
+            width: 100%; max-width: 400px; background: var(--bagasse-beige);
+            height: 100%; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .cart-item { background: var(--white); padding: 12px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+
+        footer { background: var(--coffee-brown); color: rgba(247, 243, 235, 0.8); padding: 48px 0 24px; font-size: 13px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 32px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; opacity: 0.6; }
+
+        @media (max-width: 820px) {
+            .hero-grid, .grid-3, .footer-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <div class="brand-logo">VSX</div>
+                <div>
+                    <span class="brand-title">VIỆT SỬ XANH</span>
+                    <span class="brand-sub">Eco-Heritage DIY</span>
+                </div>
+            </a>
+            <nav>
+                <a href="#vat-lieu">Vật liệu sinh học</a>
+                <a href="#trai-nghiem-qr">Cổng QR Di tích</a>
+                <a href="#san-pham">Bộ sưu tập</a>
+                <a href="tao-qr.html" style="color: var(--heritage-gold);">Tạo mã QR</a>
+                <button class="btn btn-outline" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="badge">Dự án Khởi nghiệp Tạo tác động Xã hội • SV_STARTUP</span>
+                <h1>Tái sinh di sản từ <span class="green">đất mẹ</span>, chạm lịch sử trong <span class="gold">lòng bàn tay</span>.</h1>
+                <p>Bộ kit lắp ghép mô hình kiến trúc 3D chế tác từ <strong>bã mía và bã cà phê tái chế</strong>. Tích hợp <strong>mã QR thông minh</strong> dẫn thẳng đến bài học lịch sử, giọng đọc kể chuyện và thử thách kiến thức cho từng di tích.</p>
+                <div class="hero-actions">
+                    <a href="#san-pham" class="btn btn-primary">Khám phá Bộ Kit</a>
+                    <a href="di-tich.html?id=cotco" class="btn btn-outline">Thử mở trang Quét QR</a>
+                </div>
+                <div class="stats">
+                    <div><strong>100%</strong><span>Phế phẩm nông nghiệp phân hủy sinh học</span></div>
+                    <div><strong>QR + Audio</strong><span>Thuyết minh lịch sử & Quiz tương tác</span></div>
+                    <div><strong>STEAM</strong><span>Giáo cụ trực quan chuẩn xác kiến trúc</span></div>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="hero-card-art">
+                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="92" width="80" height="12" rx="2" fill="#C68B2C"/>
+                        <rect x="30" y="78" width="60" height="12" rx="2" fill="#EBF3EC"/>
+                        <rect x="40" y="64" width="40" height="12" rx="2" fill="#C68B2C"/>
+                        <rect x="52" y="24" width="16" height="38" fill="#F7F3EB"/>
+                        <polygon points="68,24 94,31 68,38" fill="#D9381E"/>
+                    </svg>
+                    <p style="font-size: 12px; color: #EBF3EC; margin-top: 8px; letter-spacing: 1px;">MÔ HÌNH KIẾN TRÚC 3D CẮT LASER</p>
+                </div>
+                <span style="font-size: 11px; background: var(--heritage-gold); color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold;">VOL.1 • BIỂU TƯỢNG THỦ ĐÔ</span>
+                <h3 style="margin-top: 10px; font-size: 20px;">Kỳ Đài - Cột Cờ Hà Nội</h3>
+                <p style="font-size: 13px; opacity: 0.85; margin-top: 4px;">Chất liệu: Tấm ép bã cà phê nguyên hương & bã mía tự nhiên. Kèm thẻ QR kể chuyện lịch sử.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="vat-lieu" class="bg-white">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">Kinh tế tuần hoàn & Bản sắc Việt</span>
+                <h2>Từ "rác nông nghiệp" đến tác phẩm nghệ thuật</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="icon-box">01</div>
+                    <h3>Bã mía & Bã cà phê tự nhiên</h3>
+                    <p>Thu gom từ các chuỗi F&B đô thị, ép thành tấm vật liệu hữu cơ an toàn với keo sữa PVA. Giữ trọn độ nhám mộc mạc và hương cà phê dịu nhẹ khi mở hộp.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-box" style="background: var(--heritage-gold);">02</div>
+                    <h3>Mã QR Kể Chuyện Lịch Sử</h3>
+                    <p>Mỗi hộp sản phẩm gắn một mã QR riêng biệt. Quét bằng camera điện thoại để nghe giọng đọc thuyết minh, xem hướng dẫn lắp ráp và chơi Quiz.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-box" style="background: var(--coffee-brown);">03</div>
+                    <h3>Liệu pháp tĩnh tại & STEAM</h3>
+                    <p>Rèn luyện sự kiên nhẫn qua từng khớp nối cắt laser tinh xảo. Đổi mới phương pháp học sử từ thụ động sang hành trình tự tay kiến tạo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trai-nghiem-qr" class="bg-brown">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">Hệ thống dữ liệu số đi kèm sản phẩm</span>
+                <h2 style="color: var(--white);">Cổng Thông Tin Quét Mã QR Di Tích</h2>
+                <p style="font-size: 14px; opacity: 0.85; margin-top: 8px;">Bấm vào từng di tích bên dưới để xem giao diện thực tế khi khách hàng quét mã QR in trên bao bì.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card-dark">
+                    <div>
+                        <span style="font-size: 11px; background: var(--heritage-gold); padding: 3px 10px; border-radius: 999px; font-weight: bold;">MÃ QR #01</span>
+                        <h3 style="color: var(--white); margin-top: 14px;">Kỳ Đài - Cột Cờ Hà Nội</h3>
+                        <p style="font-size: 13px; opacity: 0.85;">Khám phá lịch sử công trình biểu tượng năm 1812, nghe thuyết minh audio và trả lời câu hỏi nhận huy hiệu.</p>
+                    </div>
+                    <a href="di-tich.html?id=cotco" class="btn btn-primary" style="margin-top: 20px; text-align: center;">Mở trang QR Cột Cờ Hà Nội</a>
+                </div>
+                <div class="card-dark">
+                    <div>
+                        <span style="font-size: 11px; background: var(--heritage-gold); padding: 3px 10px; border-radius: 999px; font-weight: bold;">MÃ QR #02</span>
+                        <h3 style="color: var(--white); margin-top: 14px;">Khuê Văn Các - Văn Miếu</h3>
+                        <p style="font-size: 13px; opacity: 0.85;">Tìm hiểu ý nghĩa biểu tượng sao Khuê tỏa sáng trí tuệ Việt và kiến trúc trường đại học đầu tiên của nước ta.</p>
+                    </div>
+                    <a href="di-tich.html?id=vanmieu" class="btn btn-primary" style="margin-top: 20px; text-align: center;">Mở trang QR Khuê Văn Các</a>
+                </div>
+                <div class="card-dark">
+                    <div>
+                        <span style="font-size: 11px; background: var(--heritage-gold); padding: 3px 10px; border-radius: 999px; font-weight: bold;">MÃ QR #03</span>
+                        <h3 style="color: var(--white); margin-top: 14px;">Chùa Cầu - Hội An</h3>
+                        <p style="font-size: 13px; opacity: 0.85;">Hành trình ngược dòng thời gian về thương cảng Faifo thế kỷ 17 qua kiến trúc giao thoa Việt - Nhật - Hoa.</p>
+                    </div>
+                    <a href="di-tich.html?id=chuacau" class="btn btn-primary" style="margin-top: 20px; text-align: center;">Mở trang QR Chùa Cầu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="san-pham">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">Sản phẩm thủ công & Giáo dục</span>
+                <h2>Bộ Sưu Tập Di Sản Việt Sử Xanh</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card-white">
+                    <div>
+                        <div class="product-art" style="background: #EFE6D8;">
+                            <strong class="serif" style="font-size: 18px; color: var(--coffee-brown);">VOL.1 • HÀ NỘI</strong>
+                            <span style="font-size: 12px; color: var(--heritage-gold); margin-top: 4px;">Chất liệu: Bã Cà Phê Nguyên Hương</span>
+                        </div>
+                        <h3>Bộ Kit Cột Cờ Hà Nội</h3>
+                        <p>68 mảnh ghép cắt laser tinh xảo kèm keo sữa tự nhiên và Thẻ Di Sản tích hợp mã QR kể chuyện lịch sử.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">299.000đ</span>
+                        <button class="btn btn-primary" onclick="addToCart('Bộ Kit Cột Cờ Hà Nội', 299000)">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="card-white">
+                    <div>
+                        <div class="product-art" style="background: #EBF3EC;">
+                            <strong class="serif" style="font-size: 18px; color: var(--eco-green);">VOL.1 • VĂN MIẾU</strong>
+                            <span style="font-size: 12px; color: var(--heritage-gold); margin-top: 4px;">Chất liệu: Bã Mía Hữu Cơ</span>
+                        </div>
+                        <h3>Bộ Kit Khuê Văn Các</h3>
+                        <p>Tông màu vàng ngà tự nhiên của sợi bã mía ép, tái hiện biểu tượng tinh thần hiếu học Thăng Long.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">299.000đ</span>
+                        <button class="btn btn-primary" onclick="addToCart('Bộ Kit Khuê Văn Các', 299000)">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="card-white">
+                    <div>
+                        <div class="product-art" style="background: #F5EBD6;">
+                            <strong class="serif" style="font-size: 18px; color: var(--coffee-brown);">VOL.2 • HỘI AN</strong>
+                            <span style="font-size: 12px; color: var(--heritage-gold); margin-top: 4px;">Chất liệu: Mix Bã Mía & Cà Phê</span>
+                        </div>
+                        <h3>Bộ Kit Chùa Cầu Hội An</h3>
+                        <p>Kiến trúc giao thoa văn hóa độc đáo của phố cổ Hội An, đi kèm thẻ QR kể chuyện thương cảng Faifo.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">319.000đ</span>
+                        <button class="btn btn-gold" onclick="addToCart('Bộ Kit Chùa Cầu Hội An', 319000)">Đặt trước</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 class="serif" style="color: var(--white); font-size: 18px; margin-bottom: 10px;">VIỆT SỬ XANH</h4>
+                <p>Đồ chơi DIY lắp ghép mô hình di tích lịch sử từ bã mía và bã cà phê, tích hợp công nghệ QR giáo dục di sản.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--white); font-size: 13px; text-transform: uppercase; margin-bottom: 10px;">Đơn vị thực hiện</h4>
+                <p>Nhóm sinh viên K64A - Phân hiệu Trường Đại học Ngoại Thương tại TP.HCM (FTU2).</p>
+                <p style="margin-top: 6px;">Hotline: 0944 416 354 • Email: k64.2512215064@ftu.edu.vn</p>
+            </div>
+            <div>
+                <h4 style="color: var(--white); font-size: 13px; text-transform: uppercase; margin-bottom: 10px;">Tiện ích bao bì</h4>
+                <p>Truy cập trang <a href="tao-qr.html" style="color: var(--heritage-gold); text-decoration: underline;">Trình tạo mã QR</a> để xuất file ảnh mã QR in trực tiếp lên hộp sản phẩm.</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            © 2026 Dự án Khởi nghiệp Việt Sử Xanh - SV_STARTUP Lần thứ IX.
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-panel">
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid rgba(74,50,34,0.15);">
+                    <h3 class="serif">Giỏ hàng Pre-order</h3>
+                    <button class="btn btn-outline" style="padding: 4px 12px;" onclick="toggleCart()">Đóng</button>
+                </div>
+                <div id="cart-items" style="margin-top: 16px;"></div>
+            </div>
+            <div style="border-top: 1px solid rgba(74,50,34,0.15); padding-top: 16px;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 14px;">
+                    <span>Tổng cộng:</span>
+                    <span id="cart-total" style="color: var(--eco-green);">0đ</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Xác nhận Đặt trước</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('open');
+        }
+        function addToCart(name, price) {
+            const item = cart.find(i => i.name === name);
+            if (item) item.qty++; else cart.push({ name, price, qty: 1 });
+            updateCart();
+            toggleCart();
+        }
+        function updateCart() {
+            document.getElementById('cart-count').innerText = cart.reduce((s, i) => s + i.qty, 0);
+            document.getElementById('cart-total').innerText = cart.reduce((s, i) => s + i.price * i.qty, 0).toLocaleString('vi-VN') + 'đ';
+            document.getElementById('cart-items').innerHTML = cart.map((i, idx) => `
+                <div class="cart-item">
+                    <div>
+                        <strong style="font-size: 14px; display: block;">${i.name}</strong>
+                        <span style="font-size: 12px; color: var(--eco-green);">${i.price.toLocaleString('vi-VN')}đ x ${i.qty}</span>
+                    </div>
+                    <button onclick="cart.splice(${idx},1);updateCart()" style="background:none; border:none; color:#c0392b; cursor:pointer; font-size:12px;">Xóa</button>
+                </div>
+            `).join('') || '<p style="font-size: 13px; text-align: center; opacity: 0.6; padding: 20px 0;">Giỏ hàng của bạn đang trống.</p>';
+        }
+        function checkout() {
+            if (!cart.length) return alert('Vui lòng chọn ít nhất 1 bộ Kit!');
+            alert('Cảm ơn bạn đã ủng hộ dự án Việt Sử Xanh! Chúng mình sẽ liên hệ xác nhận đơn Pre-order sớm nhất.');
+            cart = []; updateCart(); toggleCart();
+        }
+        updateCart();
+    </script>
+</body>
+</html>
